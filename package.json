@@ -1,6 +1,6 @@
 {
   "name": "@sameer52718/dotenv-linter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A linter for .env files to ensure consistency with .env.example",
   "main": "index.js",
   "bin": {
