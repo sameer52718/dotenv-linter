@@ -62,6 +62,21 @@ class DotenvLinter {
 
     return results;
   }
+
+  createExampleFile(envFilePath = '.env', exampleFilePath = '.env.example') {
+    if (!fs.existsSync(envFilePath)) {
+      throw new Error(`.env file not found at ${envFilePath}`);
+    }
+
+    const envContent = fs.readFileSync(envFilePath, 'utf-8');
+    const envConfig = dotenv.parse(envContent);
+    let exampleContent = Object.keys(envConfig)
+      .map(key => `${key}=`)
+      .join('\n');
+
+    fs.writeFileSync(exampleFilePath, exampleContent + '\n');
+    return `Created .env.example at ${exampleFilePath}`;
+  }
 }
 
 module.exports = DotenvLinter;
